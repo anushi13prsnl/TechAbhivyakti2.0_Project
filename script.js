@@ -5,7 +5,7 @@ var blur = document.querySelector("#cursor-blur");
 setTimeout(() => {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('content').style.display = 'block';
-}, 42);
+}, 4200);
 
 //...........................................................................
 

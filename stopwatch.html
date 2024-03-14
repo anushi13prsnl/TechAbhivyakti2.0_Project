@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        /* CSS styles for the stopwatch */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url(Assests/black-abstract-modern-background_34230-374.avif);
+            background-size: cover;
+            color: white;
+        }
+
+        #stopwatchContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 2em;
+            text-decoration: underline;
+        }
+
+        #timeDisplay {
+            font-size: 8em;
+            margin-bottom: 20px;
+        }
+
+        #buttonsContainer {
+            display: flex;
+        }
+
+        button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #startBtn {
+            background-color: #1a89ff;
+            color: white;
+        }
+
+        #pauseBtn {
+            background-color: #f17e02;
+            color: white;
+        }
+
+        #lapBtn {
+            background-color: #b848d7;
+            color: white;
+        }
+
+        #continueBtn {
+            background-color: #27d650;
+            color: white;
+        }
+
+        #resetBtn {
+            background-color: #da0117;
+            color: white;
+        }
+
+        #lapData {
+            margin-top: 20px;
+        }
+
+        #lapData table {
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        #lapData th, #lapData td {
+            padding: 8px;
+            border: 1px solid white;
+        }
+
+        #lapData th {
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="stopwatchContainer">
+    <h1>Stopwatch</h1>
+    <div id="timeDisplay">00:00:00.000</div>
+    <div id="buttonsContainer">
+        <button id="startBtn" onclick="startStopwatch()">Start</button>
+        <button id="pauseBtn" style="display: none;" onclick="pauseStopwatch()">Pause</button>
+        <button id="lapBtn" style="display: none;" onclick="lapStopwatch()">Lap</button>
+        <button id="continueBtn" style="display: none;" onclick="continueStopwatch()">Continue</button>
+        <button id="resetBtn" style="display: none;" onclick="resetStopwatch()">Reset</button>
+    </div>
+    <div id="lapData"></div>
+</div>
+
+<script>
+let startTime;
+let elapsedTime = 0;
+let lapData = [];
+let timerInterval;
+
+function startStopwatch() {
+    startTime = Date.now() - elapsedTime;
+    timerInterval = setInterval(function() {
+        elapsedTime = Date.now() - startTime;
+        displayTime(elapsedTime);
+    }, 10);
+    document.getElementById("startBtn").style.display = "none";
+    document.getElementById("pauseBtn").style.display = "inline-block";
+    document.getElementById("lapBtn").style.display = "inline-block";
+}
+
+function pauseStopwatch() {
+    clearInterval(timerInterval);
+    document.getElementById("pauseBtn").style.display = "none";
+    document.getElementById("continueBtn").style.display = "inline-block";
+    document.getElementById("resetBtn").style.display = "inline-block";
+}
+
+function continueStopwatch() {
+    startStopwatch();
+    document.getElementById("continueBtn").style.display = "none";
+    document.getElementById("resetBtn").style.display = "none";
+}
+
+function lapStopwatch() {
+    let lapTime = elapsedTime;
+    let current = new Date().toLocaleString();
+    lapData.push({ lap: lapData.length + 1, time: formatTime(lapTime), current: current });
+    displayLapData();
+}
+
+function resetStopwatch() {
+    clearInterval(timerInterval);
+    elapsedTime = 0;
+    lapData = [];
+    displayTime(elapsedTime);
+    document.getElementById("startBtn").style.display = "inline-block";
+    document.getElementById("pauseBtn").style.display = "none";
+    document.getElementById("continueBtn").style.display = "none";
+    document.getElementById("lapBtn").style.display = "none";
+    document.getElementById("resetBtn").style.display = "none";
+    document.getElementById("lapData").innerHTML = "";
+}
+
+function displayTime(elapsedTime) {
+    let milliseconds = Math.floor((elapsedTime % 1000) / 10);
+    let seconds = Math.floor((elapsedTime / 1000) % 60);
+    let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+    let hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+    document.getElementById("timeDisplay").innerText = pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 2);
+}
+
+function pad(num, size) {
+    let numStr = num.toString();
+    while (numStr.length < size) numStr = "0" + numStr;
+    return numStr;
+}
+
+function formatTime(time) {
+    let milliseconds = Math.floor((time % 1000) / 10);
+    let seconds = Math.floor((time / 1000) % 60);
+    let minutes = Math.floor((time / (1000 * 60)) % 60);
+    let hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+    return pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 2);
+}
+
+function displayLapData() {
+    let lapDataHtml = "<h3>LAP DATA -</h3>";
+    lapDataHtml += "<table>";
+    lapDataHtml += "<tr><th>S.No.</th><th>Lap Time</th><th>Current Time</th></tr>";
+    lapData.forEach(function(lap) {
+        lapDataHtml += "<tr><td>" + lap.lap + "</td><td>" + lap.time + "</td><td>" + lap.current + "</td></tr>";
+    });
+    lapDataHtml += "</table>";
+    document.getElementById("lapData").innerHTML = lapDataHtml;
+}
+</script>
+
+</body>
+</html>
