@@ -265,10 +265,11 @@ a {
 
 
 .header {
+    color: aliceblue;
 	padding-top: 0px;
 	padding-bottom: 0px;
 	border: 1px solid #000000;
-	background-color: #f4f4f4;
+	background-color: #1d1d1d;
 	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
@@ -319,12 +320,13 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image: url(Assests/green-lights-background.jpg), -moz-linear-gradient(270deg,rgba(178,0,3,1.00) 0%,rgba(103,17,17,1.00) 100%);
-    background-image: url(Assests/green-lights-background.jpg), -webkit-linear-gradient(270deg,rgba(178,0,3,1.00) 0%,rgba(103,17,17,1.00) 100%);
-    background-image: url(Assests/green-lights-background.jpg), -o-linear-gradient(270deg,rgba(178,0,3,1.00) 0%,rgba(103,17,17,1.00) 100%);
-    background-image: url(Assests/green-lights-background.jpg), linear-gradient(180deg,rgba(178,0,3,1.00) 0%,rgba(103,17,17,1.00) 100%);
+    /* background-image: url(Assests/black-prism-concept-ai-generated_268835-7011.avif), -moz-linear-gradient(270deg,rgba(178,0,3,1.00) 0%,rgba(103,17,17,1.00) 100%);
+    background-image: url(Assests/black-prism-concept-ai-generated_268835-7011.avif), -webkit-linear-gradient(270deg,rgba(178,0,3,1.00) 0%,rgba(103,17,17,1.00) 100%);
+    background-image: url(Assests/black-prism-concept-ai-generated_268835-7011.avif), -o-linear-gradient(270deg,rgba(178,0,3,1.00) 0%,rgba(103,17,17,1.00) 100%);
+    background-image: url(Assests/black-prism-concept-ai-generated_268835-7011.avif), linear-gradient(180deg,rgba(178,0,3,1.00) 0%,rgba(103,17,17,1.00) 100%); */
+    background-image: url(Assests/black-2560X1600-wallpaper-ovqu4xbu8rhnyo3m.jpeg);
     background-size: cover;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
 }
 
 .logo img {
@@ -343,7 +345,7 @@ body {
     background-color: rgba(0, 0, 0, 0.701);
     padding: 10px;
     box-shadow: 0px 0px 10px #000;
-    height: 600px;
+    height: 500px;
     color: white;
 }
 
@@ -423,7 +425,7 @@ body {
     background-color: rgb(160, 198, 5);
 }
 #stopbutton{
-    padding: 1px 10px;
+    padding: 1px 3px;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 3px;
@@ -451,7 +453,7 @@ body {
 }
 
 #resetbutton{
-    padding: 1px 10px;
+    padding: 1px 3px;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 3px;

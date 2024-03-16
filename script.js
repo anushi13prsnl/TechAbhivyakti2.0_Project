@@ -1,3 +1,23 @@
+// Smooth scrolling behavior for navbar links
+document.addEventListener("DOMContentLoaded", function() {
+  // Select all links with hashes
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      // Smooth scroll on click
+      anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          // Get the target element
+          const target = document.querySelector(this.getAttribute('href'));
+          
+          // Scroll smoothly to the target element
+          target.scrollIntoView({
+              behavior: 'smooth'
+          });
+      });
+  });
+});
+
+
 var crsr = document.querySelector("#cursor");
 var blur = document.querySelector("#cursor-blur");
 

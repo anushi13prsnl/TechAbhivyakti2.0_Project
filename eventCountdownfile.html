@@ -11,6 +11,8 @@
         padding: 0;
         font-family: 'Poppins', sans-serif;
     }
+    /* #glitter button :hover {
+  background-color: #4b0202; } */
 
     section {
         display: flex;
@@ -171,64 +173,86 @@
     </section>
 
     <script>
-        // Function to create event template with countdown
-        function createEventTemplate() {
-            // Get event details from user input
-            var eventName = document.getElementById("eventName").value;
-            var eventDateStr = document.getElementById("eventDate").value;
-            var eventTimeStr = document.getElementById("eventTime").value;
-            var eventLocation = document.getElementById("eventLocation").value;
-            var eventDescription = document.getElementById("eventDescription").value;
 
-            // Convert event date and time strings into Date object
-            var eventDate = new Date(eventDateStr + "T" + eventTimeStr);
+    // Function to create event template with countdown
+    function createEventTemplate() {
+        // Get event details from user input
+        var eventName = document.getElementById("eventName").value;
+        var eventDateStr = document.getElementById("eventDate").value;
+        var eventTimeStr = document.getElementById("eventTime").value;
+        var eventLocation = document.getElementById("eventLocation").value;
+        var eventDescription = document.getElementById("eventDescription").value;
 
-            // Calculate countdown
-            var now = new Date().getTime();
-            var distance = eventDate.getTime() - now;
+        // Convert event date and time strings into Date object
+        var eventDate = new Date(eventDateStr + "T" + eventTimeStr);
 
-            // Create event template
-            var template = "<div class='template-value'>";
-            template += "<h2>" + eventName + "</h2>";
-            template += "<p>Date: " + eventDate.toDateString() + "</p>";
-            template += "<p>Time: " + eventDate.toLocaleTimeString() + "</p>";
-            template += "<p>Location: " + eventLocation + "</p>";
-            template += "<p>Description: " + eventDescription + "</p>";
-            template += "<div id='countdown'></div>";
-            template += "</div>";
+        // Calculate countdown
+        var now = new Date().getTime();
+        var distance = eventDate.getTime() - now;
 
-            // Display event template
-            document.getElementById("eventTemplate").innerHTML = template;
-            document.getElementById("formBox").classList.add("hide"); // Hide the form box
-            document.getElementById("eventTemplate").style.display = "flex"; // Show the template
+        // Create event template
+        var template = "<div class='template-value'>";
+        template += "<h2>" + eventName + "</h2>";
+        template += "<p>Date: " + eventDate.toDateString() + "</p>";
+        template += "<p>Time: " + eventDate.toLocaleTimeString() + "</p>";
+        template += "<p>Location: " + eventLocation + "</p>";
+        template += "<p>Description: " + eventDescription + "</p>";
+        template += "<div id='countdown'></div>";
+        template += "</div>";
 
-            // Update countdown every second
-            var x = setInterval(function () {
-                now = new Date().getTime();
-                distance = eventDate.getTime() - now;
+        // Display event template
+        document.getElementById("eventTemplate").innerHTML = template;
+        document.getElementById("formBox").classList.add("hide"); // Hide the form box
+        document.getElementById("eventTemplate").style.display = "flex"; // Show the template
 
-                // Calculate days, hours, minutes, and seconds
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Update countdown every second
+        var audio = null; // Variable to hold the audio element
+        var x = setInterval(function () {
+            now = new Date().getTime();
+            distance = eventDate.getTime() - now;
 
-                // Display the countdown
-                document.getElementById("countdown").innerHTML = "Countdown: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            // Calculate days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // If the countdown is over, display a message
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById("countdown").innerHTML = "EXPIRED";
-                    document.getElementById("glitter").style.display = "block"; // Show glitter effect
+            // Display the countdown
+            document.getElementById("countdown").innerHTML = "Countdown: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // Play audio when countdown starts and it's the last 5 seconds
+            if (distance <= 8000 && distance > 0) {
+                if (!audio) {
+                    audio = new Audio('Assests/xyz.m4a');
+                    audio.play();
                 }
-            }, 1000);
-        }
+            } else if (distance <= 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+                document.getElementById("glitter").style.display = "block"; // Show glitter effect
+            }
+
+            // Change background smoothly when countdown reaches the last 5 seconds
+            if (distance <= 8700 && distance > 0) {
+                document.querySelector('section').style.transition = "background 5s ease";
+                document.querySelector('section').style.backgroundImage = "url('Assests/glitch.gif')";
+            } else if (distance <= 0) {
+                document.querySelector('section').style.backgroundImage = "url('Assests/formbackground.jpg')";
+            }
+        }, 1000);
+    }
+
+
     </script>
 
     <!-- Glitter effect and message -->
-    <div id="glitter" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 9999;">
-        <h1 style="position: absolute; top: 75%; left: 50%; transform: translate(-50%, -50%); font-size: 3em;text-shadow: rgb(195, 0, 0) 1px 0 10px; color: rgb(195, 0, 0);">HERE COUNTDOWN ENDS!</h1>
+    <div id="glitter" style="display: none; position: absolute; top: 5%; left: 0; width: 100%; height: 100%; background: transparent; z-index: 9999;">
+        <h1 style="position: absolute; text-align: center; top: 75%; left: 50%; transform: translate(-50%, -50%); font-size: 3em;text-shadow: rgb(195, 0, 0) 1px 0 10px; color: rgb(195, 0, 0);">
+            HERE COUNTDOWN ENDS! 
+            <br> 
+            <!-- <button id="share" style="background-color: rgb(195, 0, 0); width: 20%;  border-radius: 8px;   border-style: none;   box-sizing: border-box;   color: #e3e3e3;   cursor: pointer;   display: inline-block; font-size: 14px;   font-weight: 500;   height: 40px;   line-height: 20px;   list-style: none;   margin: 0;   outline: none;   padding: 10px 16px;   position: relative;   text-align: center;   text-decoration: none;   transition: color 100ms;   vertical-align: baseline;   user-select: none;   -webkit-user-select: none;   touch-action: manipulation; "> 
+            SHARE</button> -->
+        </h1>
         <!-- Add your glitter effect here -->
     </div>
 </body>

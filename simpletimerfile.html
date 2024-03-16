@@ -9,15 +9,19 @@
 </head>
 
 <body>
-    <!-- <header class="header">
-        <h2 class="logo" style="font-size: 56px; color: rgb(68, 5, 62);">TIMER</h2>
+    <header class="header" style="height: 50px;">
+        <!-- <h2 class="logo" style="font-size: 56px; color: rgb(252, 249, 252);">HOME</h2> -->
         <ul class="main-nav">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" style="text-decoration: none; color: aliceblue;">HOME</a></li>
         </ul>
-    </header> -->
+    </header>
 
-    <div class="container2">
-        <div class="countdown-form">
+    <div class="container2" >
+        <div class="countdown-form" style="box-shadow: 
+        0px -25px 20px -20px rgba(252, 249, 249, 0.45),
+        25px 0px 20px -20px rgba(255,255,255,0.45),
+        0px 25px 20px -20px rgba(255,255,255,0.45),
+        -25px 0px 20px -20px rgba(255,255,255,0.45);">
             <h2 style="text-decoration: underline ;"><strong>SET TIMER</strong></h2>
             <br>
             <form id="countdownForm">
@@ -111,17 +115,17 @@
             isStarted = true;
 
             if (timeOption === "secondsOption") {
-                timerElement.textContent = time + "SECONDS REMAINING";
+                timerElement.textContent = time + " SECONDS REMAINING";
             } else {
                 time *= 60;
-                timerElement.textContent = time + "SECONDS REMAINING";
+                timerElement.textContent = time + " SECONDS REMAINING";
             }
 
             countdown = setInterval(function () {
                 if (timeOption === "secondsOption") {
-                    timerElement.textContent = time + "SECONDS REMAINING";
+                    timerElement.textContent = time + " SECONDS REMAINING";
                 } else {
-                    timerElement.textContent = time + "SECONDS REMAINING";
+                    timerElement.textContent = time + " SECONDS REMAINING";
                 }
                 time--;
 
