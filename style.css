@@ -553,6 +553,9 @@ video {
 /* Sign Out Btn */
 #signoutbtn{
   height: 50px;
+  position: absolute;
+  top: 32%;
+  left: 90%;
   padding: 0 15px;
   font-size: 17px;
   border: 1px solid #ddd;
