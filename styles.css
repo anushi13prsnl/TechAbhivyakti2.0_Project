@@ -1,85 +1,96 @@
 /* Import Google font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-body{
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     width: 100%;
-    
-    background: url('Assests/login-background.jpg')no-repeat;
+    font-family: 'Poppins', sans-serif;
+    background: url('Assests/login-background.jpg') no-repeat;
     background-position: center;
     background-size: cover;
 }
-.container{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  max-width: 430px;
-  width: 100%;
-  background: #fff;
-  border-radius: 7px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.51);
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%; /* Adjusted max-width */
+    width: 90%; /* Adjusted width */
+    max-width: 470px; /* Added max-width for smaller screens */
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.51);
 }
-.container .registration{
-  display: none;
+
+.container .registration,
+.container .forgot,
+#check {
+    display: none;
 }
-.container .forgot{
-  display:none;
+
+.container .form {
+    padding: 2em; /* Adjusted padding */
 }
-#check{
-  display: none;
+
+.form header {
+    font-size: 2em; /* Adjusted font size */
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1.5em; /* Adjusted margin */
 }
-.container .form{
-  padding: 2rem;
+
+.form input {
+    height: 3.5em; /* Adjusted height */
+    width: 100%;
+    padding: 0 1.5em; /* Adjusted padding */
+    font-size: 1em; /* Adjusted font size */
+    margin-bottom: 1em; /* Adjusted margin */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
 }
-.form header{
-  font-size: 2rem;
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 1.5rem;
+
+.form input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
- .form input{
-   height: 50px;
-   width: 100%;
-   padding: 0 15px;
-   font-size: 17px;
-   margin-bottom: 10px;
-   border: 1px solid #ddd;
-   border-radius: 6px;
-   outline: none;
- }
- .form input:focus{
-   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
- }
-.form input.button{
-  color: #fff;
-  background: #009579;
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 15px;
-  cursor: pointer;
-  transition: 0.4s;
+
+.form input.button {
+    color: #fff;
+    background: #009579;
+    font-size: 1em; /* Adjusted font size */
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 1.5em; /* Adjusted margin */
+    cursor: pointer;
+    transition: 0.4s;
 }
-.form input.button:hover{
-  background: #006653;
+
+.form input.button:hover {
+    background: #006653;
 }
-.signup{
-  font-size: 17px;
-  text-align: center;
+
+.signup {
+    font-size: 1em; /* Adjusted font size */
+    text-align: center;
+    margin-top: 1em; /* Adjusted margin */
 }
-.signup a{
-  color: #009579;
-  cursor: pointer;
+
+.signup a {
+    color: #009579;
+    cursor: pointer;
 }
-.signup a:hover{
-  text-decoration: underline;
+
+.signup a:hover {
+    text-decoration: underline;
 }
