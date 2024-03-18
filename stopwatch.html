@@ -5,227 +5,256 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stopwatch</title>
     <link rel="shortcut icon" href="Asssts/favicon-32x32.png" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="Assests/favicon_io/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="Assests/favicon_io/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="Assests/favicon_io/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="Assests/favicon_io/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="Assests/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="Assests/favicon_io/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <style>
         /* CSS styles for the stopwatch */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-image: url(Assests/black-abstract-modern-background_34230-374.avif);
-            background-size: cover;
-            color: white;
-        }
+        /* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        #stopwatchContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+/* Body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url(Assests/black-abstract-modern-background_34230-374.avif);
+    background-size: cover;
+    color: white;
+}
 
-        h1 {
-            font-size: 2em;
-            text-decoration: underline;
-        }
+/* Navbar styles */
+.navbar {
+    background-color: #000;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    color: #9a9999;
+}
 
-        #timeDisplay {
-            font-size: 8em;
-            margin-bottom: 20px;
-        }
+.navbar img {
+    height: 5vw;
+    max-height: 30px;
+    vertical-align: middle;
+}
 
-        #buttonsContainer {
-            display: flex;
-        }
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1.5vw;
+}
 
-        button {
-            margin: 0 10px;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-        }
+/* Stopwatch container styles */
+#stopwatchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding-bottom: 10vh; */
+    margin-top: 20vh;
+}
 
-        #startBtn {
-            background-color: #1a89ff;
-            color: white;
-        }
+/* Header styles */
+h1 {
+    font-size: 2.5vw;
+    text-decoration: underline;
+}
 
-        #pauseBtn {
-            background-color: #f17e02;
-            color: white;
-        }
+/* Time display styles */
+#timeDisplay {
+    font-size: 8vw;
+    margin-bottom: 5vh;
+}
 
-        #lapBtn {
-            background-color: #b848d7;
-            color: white;
-        }
+/* Buttons container styles */
+#buttonsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-        #continueBtn {
-            background-color: #27d650;
-            color: white;
-        }
+/* Button styles */
+button {
+    margin: 1vw;
+    padding: 1.5vw 3vw; /* Adjusted padding for smaller button size */
+    font-size: 1.2vw; /* Adjusted font size */
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
 
-        #resetBtn {
-            background-color: #da0117;
-            color: white;
-        }
+/* Button colors */
+#startBtn {
+    background-color: #1a89ff;
+    color: white;
+}
+
+#pauseBtn {
+    background-color: #f17e02;
+    color: white;
+}
+
+#lapBtn {
+    background-color: #b848d7;
+    color: white;
+}
+
+#continueBtn {
+    background-color: #27d650;
+    color: white;
+}
+
+#resetBtn {
+    background-color: #da0117;
+    color: white;
+}
+
+/* Button hover effect */
+button:hover {
+    filter: brightness(1.2);
+}
+
 
         #lapData {
-            margin-top: 20px;
+            margin-top: 5vh;
+            width: 80%;
+            overflow-x: auto;
+        }
+        #lapData h3 {
+            font-size: 2vw;
         }
 
         #lapData table {
-            width: 80%;
+            width: 100%;
             border-collapse: collapse;
         }
 
         #lapData th, #lapData td {
-            padding: 8px;
+            padding: 1vw;
             border: 1px solid white;
+            font-size: 1.2vw;
+
         }
 
         #lapData th {
             background-color: rgba(255, 255, 255, 0.2);
             font-weight: bold;
         }
-        .navbar {
-      background-color: #000;
-      padding: 10px 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      color: #9a9999;
-      /* font-family: 'Courier New', Courier, monospace; */
-    }
-
-    .navbar img {
-      /* max-height: 30px; */
-      vertical-align: middle;
-      height: 5vw;
-    }
-
-    .navbar a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: x-large;
-    }
     </style>
 </head>
 <body>
     <div class="navbar">
         <div>
-          <img src="Assests/IMG_3511.png" alt="Logo">
+            <img src="Assests/IMG_3511.png" alt="Logo">
         </div>
         <div>
-          <a href="main.html" style="margin-right: 30px;">Home</a> 
-          <!-- <a href="eventCountdownfile.html">Create event countdown</a> -->
+            <a href="main.html" style="margin-right: 3vw;">Home</a>
         </div>
-      </div>
-<div id="stopwatchContainer" style="padding-bottom: 150px;">
-    <h1>Stopwatch</h1>
-    <div id="timeDisplay" >00:00:00.000</div>
-    <div id="buttonsContainer">
-        <button id="startBtn" onclick="startStopwatch()">Start</button>
-        <button id="pauseBtn" style="display: none;" onclick="pauseStopwatch()">Pause</button>
-        <button id="lapBtn" style="display: none;" onclick="lapStopwatch()">Lap</button>
-        <button id="continueBtn" style="display: none;" onclick="continueStopwatch()">Continue</button>
-        <button id="resetBtn" style="display: none;" onclick="resetStopwatch()">Reset</button>
     </div>
-    <div id="lapData"></div>
-</div>
+    <div id="stopwatchContainer">
+        <h1>Stopwatch</h1>
+        <div id="timeDisplay">00:00:00.000</div>
+        <div id="buttonsContainer">
+            <button id="startBtn" onclick="startStopwatch()">Start</button>
+            <button id="pauseBtn" style="display: none;" onclick="pauseStopwatch()">Pause</button>
+            <button id="lapBtn" style="display: none;" onclick="lapStopwatch()">Lap</button>
+            <button id="continueBtn" style="display: none;" onclick="continueStopwatch()">Continue</button>
+            <button id="resetBtn" style="display: none;" onclick="resetStopwatch()">Reset</button>
+        </div>
+        <div id="lapData"></div>
+    </div>
 
-<script>
-let startTime;
-let elapsedTime = 0;
-let lapData = [];
-let timerInterval;
+    <script>
+        let startTime;
+        let elapsedTime = 0;
+        let lapData = [];
+        let timerInterval;
 
-function startStopwatch() {
-    startTime = Date.now() - elapsedTime;
-    timerInterval = setInterval(function() {
-        elapsedTime = Date.now() - startTime;
-        displayTime(elapsedTime);
-    }, 10);
-    document.getElementById("startBtn").style.display = "none";
-    document.getElementById("pauseBtn").style.display = "inline-block";
-    document.getElementById("lapBtn").style.display = "inline-block";
-}
+        function startStopwatch() {
+            startTime = Date.now() - elapsedTime;
+            timerInterval = setInterval(function() {
+                elapsedTime = Date.now() - startTime;
+                displayTime(elapsedTime);
+            }, 10);
+            document.getElementById("startBtn").style.display = "none";
+            document.getElementById("pauseBtn").style.display = "inline-block";
+            document.getElementById("lapBtn").style.display = "inline-block";
+        }
 
-function pauseStopwatch() {
-    clearInterval(timerInterval);
-    document.getElementById("pauseBtn").style.display = "none";
-    document.getElementById("continueBtn").style.display = "inline-block";
-    document.getElementById("resetBtn").style.display = "inline-block";
-}
+        function pauseStopwatch() {
+            clearInterval(timerInterval);
+            document.getElementById("pauseBtn").style.display = "none";
+            document.getElementById("continueBtn").style.display = "inline-block";
+            document.getElementById("resetBtn").style.display = "inline-block";
+        }
 
-function continueStopwatch() {
-    startStopwatch();
-    document.getElementById("continueBtn").style.display = "none";
-    document.getElementById("resetBtn").style.display = "none";
-}
+        function continueStopwatch() {
+            startStopwatch();
+            document.getElementById("continueBtn").style.display = "none";
+            document.getElementById("resetBtn").style.display = "none";
+        }
 
-function lapStopwatch() {
-    let lapTime = elapsedTime;
-    let current = new Date().toLocaleString();
-    lapData.push({ lap: lapData.length + 1, time: formatTime(lapTime), current: current });
-    displayLapData();
-}
+        function lapStopwatch() {
+            let lapTime = elapsedTime;
+            let current = new Date().toLocaleString();
+            lapData.push({ lap: lapData.length + 1, time: formatTime(lapTime), current: current });
+            displayLapData();
+        }
 
-function resetStopwatch() {
-    clearInterval(timerInterval);
-    elapsedTime = 0;
-    lapData = [];
-    displayTime(elapsedTime);
-    document.getElementById("startBtn").style.display = "inline-block";
-    document.getElementById("pauseBtn").style.display = "none";
-    document.getElementById("continueBtn").style.display = "none";
-    document.getElementById("lapBtn").style.display = "none";
-    document.getElementById("resetBtn").style.display = "none";
-    document.getElementById("lapData").innerHTML = "";
-}
+        function resetStopwatch() {
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+            lapData = [];
+            displayTime(elapsedTime);
+            document.getElementById("startBtn").style.display = "inline-block";
+            document.getElementById("pauseBtn").style.display = "none";
+            document.getElementById("continueBtn").style.display = "none";
+            document.getElementById("lapBtn").style.display = "none";
+            document.getElementById("resetBtn").style.display = "none";
+            document.getElementById("lapData").innerHTML = "";
+        }
 
-function displayTime(elapsedTime) {
-    let milliseconds = Math.floor((elapsedTime % 1000) / 10);
-    let seconds = Math.floor((elapsedTime / 1000) % 60);
-    let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
-    let hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
-    document.getElementById("timeDisplay").innerText = pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 2);
-}
+        function displayTime(elapsedTime) {
+            let milliseconds = Math.floor((elapsedTime % 1000) / 10);
+            let seconds = Math.floor((elapsedTime / 1000) % 60);
+            let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+            let hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+            document.getElementById("timeDisplay").innerText = pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 2);
+        }
 
-function pad(num, size) {
-    let numStr = num.toString();
-    while (numStr.length < size) numStr = "0" + numStr;
-    return numStr;
-}
+        function pad(num, size) {
+            let numStr = num.toString();
+            while (numStr.length < size) numStr = "0" + numStr;
+            return numStr;
+        }
 
-function formatTime(time) {
-    let milliseconds = Math.floor((time % 1000) / 10);
-    let seconds = Math.floor((time / 1000) % 60);
-    let minutes = Math.floor((time / (1000 * 60)) % 60);
-    let hours = Math.floor((time / (1000 * 60 * 60)) % 24);
-    return pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 2);
-}
+        function formatTime(time) {
+            let milliseconds = Math.floor((time % 1000) / 10);
+            let seconds = Math.floor((time / 1000) % 60);
+            let minutes = Math.floor((time / (1000 * 60)) % 60);
+            let hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+            return pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 2);
+        }
 
-function displayLapData() {
-    let lapDataHtml = "<h3>LAP DATA -</h3>";
-    lapDataHtml += "<table>";
-    lapDataHtml += "<tr><th>S.No.</th><th>Lap Time</th><th>Current Time</th></tr>";
-    lapData.forEach(function(lap) {
-        lapDataHtml += "<tr><td>" + lap.lap + "</td><td>" + lap.time + "</td><td>" + lap.current + "</td></tr>";
-    });
-    lapDataHtml += "</table>";
-    document.getElementById("lapData").innerHTML = lapDataHtml;
-}
-</script>
-
+        function displayLapData() {
+            let lapDataHtml = "<h3>LAP DATA -</h3> </br> ";
+            lapDataHtml += "<table>";
+            lapDataHtml += "<tr><th>S.No.</th><th>Lap Time</th><th>Current Time</th></tr>";
+            lapData.forEach(function(lap) {
+                lapDataHtml += "<tr><td>" + lap.lap + "</td><td>" + lap.time + "</td><td>" + lap.current + "</td></tr>";
+            });
+            lapDataHtml += "</table>";
+            document.getElementById("lapData").innerHTML = lapDataHtml;
+        }
+    </script>
 </body>
 </html>
