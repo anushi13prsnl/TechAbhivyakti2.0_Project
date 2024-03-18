@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      /* font-family: 'Courier New', Courier, monospace; */
+      margin: 0;
+      padding: 0;
+      background-image: url(Assests/calendar.jpg);
+      background-size: cover;
+    }
+
+    .navbar {
+      background-color: #000;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      color: #9a9999;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .navbar img {
+      /* max-height: 30px; */
+      vertical-align: middle;
+      height: 5vw;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .calendar {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgba(28, 28, 28, 0.5);
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      color: #000000;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .header button {
+      background-color: #92ec37;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    .weekdays {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .weekdays div {
+      flex: 1;
+      text-align: center;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .day {
+      position: relative;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .prev-month {
+      color: #2f2f2f;
+    }
+
+    .current-month {
+      background-color: #95c11e;
+    }
+
+    .next-month {
+      color: #2f2f2f;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      background-color: rgba(85, 85, 85, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      backdrop-filter: blur(5px); /* Blur background */
+      /* color: #000000; */
+    }
+
+    .popup h2 {
+      margin-top: 0;
+      color: #0a0a0a; /* Dark color for 'Add Note' heading */
+    }
+
+    .popup textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 10px;
+      resize: none;
+    }
+
+    .popup button {
+      padding: 10px 20px;
+      background-color: #77b33c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup button:hover {
+      background-color: #95c11e;
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 20px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .notes-list {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgba(28, 28, 28, 0.5);
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      color: #a7a7a7;
+    }
+
+    .notes-list h3 {
+      margin-bottom: 10px;
+    }
+
+    .notes-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .notes-list li {
+      padding: 5px 0;
+      border-bottom: 0.4px solid #ddd;
+    }
+
+    .notes-list li:last-child {
+      border-bottom: none;
+    }
+
+    .indicator {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div>
+    <img src="Assests/IMG_3511.png" alt="Logo">
+  </div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="eventCountdownfile.html">Create event countdown</a>
+  </div>
+</div>
+
+<div class="calendar">
+  <div class="header">
+    <button id="prevMonth" style="color: #2f2f2f;">Previous Month</button>
+    <h1 id="monthYear" style="color:#9a9999; font-size: 2.5em; font-family: 'Courier New', Courier, monospace;"></h1>
+    <button id="nextMonth" style="color: #2f2f2f;">Next Month</button>
+  </div>
+
+  <div class="weekdays" style="color: #9a9999; font-family: 'Courier New', Courier, monospace; font-weight: 600;">
+    <div>Sun</div>
+    <div>Mon</div>
+    <div>Tue</div>
+    <div>Wed</div>
+    <div>Thu</div>
+    <div>Fri</div>
+    <div>Sat</div>
+  </div>
+
+  <div class="days" id="days"></div>
+</div>
+
+<div class="popup" id="notePopup">
+  <div class="popup-content">
+    <span class="close-popup">×</span>
+    <h2>Add Note</h2>
+    <textarea id="noteContent" rows="4" placeholder="Enter your note..."></textarea>
+    <button onclick="saveNote()">Save</button>
+  </div>
+</div>
+
+<div class="notes-list">
+  <h3 style="font-family: 'Courier New', Courier, monospace;">Notes Created</h3>
+  <ul id="notesList" style="font-family: 'Courier New', Courier, monospace;" ></ul>
+</div>
+
+<script>
+  const monthYearElement = document.getElementById('monthYear');
+  const daysElement = document.getElementById('days');
+  const notePopup = document.getElementById('notePopup');
+  const noteContentInput = document.getElementById('noteContent');
+  const notesList = document.getElementById('notesList');
+
+  let currentDate = new Date();
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
+  let notes = {}; // Object to store notes for each date
+
+  renderCalendar(currentMonth, currentYear);
+
+  function renderCalendar(month, year) {
+    // Clear previous calendar
+    daysElement.innerHTML = '';
+
+    // Set the month and year in the header
+    monthYearElement.textContent = `${getMonthName(month)} ${year}`;
+
+    // Get the first day of the month
+    const firstDayOfMonth = new Date(year, month, 1);
+    const startingDay = firstDayOfMonth.getDay();
+
+    // Get the number of days in the month
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Render previous month's days if necessary
+    for (let i = startingDay - 1; i >= 0; i--) {
+      const prevDate = new Date(year, month, -i);
+      renderDay(prevDate, 'prev-month');
+    }
+
+    // Render current month's days
+    for (let i = 1; i <= daysInMonth; i++) {
+      const currentDate = new Date(year, month, i);
+      const dateString = currentDate.toISOString().slice(0, 10);
+      renderDay(currentDate, 'current-month', notes[dateString]);
+    }
+
+    // Render next month's days if necessary
+    const lastDayOfMonth = new Date(year, month, daysInMonth);
+    const endingDay = lastDayOfMonth.getDay();
+    for (let i = 1; i < 7 - endingDay; i++) {
+      const nextDate = new Date(year, month + 1, i);
+      renderDay(nextDate, 'next-month');
+    }
+  }
+
+  function renderDay(date, className, hasNote) {
+    const dayElement = document.createElement('div');
+    dayElement.classList.add('day');
+    dayElement.classList.add(className);
+    dayElement.textContent = date.getDate();
+    dayElement.setAttribute('data-date', date.toISOString().slice(0, 10));
+    dayElement.onclick = () => openNotePopup(date);
+    if (hasNote) {
+      const indicator = document.createElement('span');
+      indicator.classList.add('indicator');
+      indicator.innerHTML = '📌';
+      dayElement.appendChild(indicator);
+    }
+    daysElement.appendChild(dayElement);
+  }
+
+  function getMonthName(monthIndex) {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return months[monthIndex];
+  }
+
+  function openNotePopup(date) {
+    notePopup.style.display = 'block';
+    notePopup.dataset.date = date.toISOString().slice(0, 10);
+  }
+
+  function saveNote() {
+    const date = notePopup.dataset.date;
+    const content = noteContentInput.value;
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `<strong>${date}</strong>:<br>${content}`;
+    notesList.appendChild(listItem);
+    notes[date] = true;
+    closePopup();
+    const selectedDay = document.querySelector(`.day[data-date="${date}"]`);
+    const indicator = document.createElement('span');
+    indicator.classList.add('indicator');
+    indicator.innerHTML = '📌';
+    selectedDay.appendChild(indicator);
+  }
+
+  function closePopup() {
+    notePopup.style.display = 'none';
+  }
+
+  document.getElementById('prevMonth').addEventListener('click', () => {
+    currentMonth -= 1;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear -= 1;
+    }
+    renderCalendar(currentMonth, currentYear);
+  });
+
+  document.getElementById('nextMonth').addEventListener('click', () => {
+    currentMonth += 1;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear += 1;
+    }
+    renderCalendar(currentMonth, currentYear);
+  });
+
+  document.querySelector('.close-popup').addEventListener('click', closePopup); // Close popup on cross icon click
+</script>
+</body>
+</html>

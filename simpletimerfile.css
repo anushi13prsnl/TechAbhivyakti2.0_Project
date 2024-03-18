@@ -232,7 +232,29 @@ a {
 a {
 	text-decoration: none;
 }
+.navbar {
+    background-color: #000;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    color: aliceblue;
+    font-size: x-large;
+    /* font-family: 'Courier New', Courier, monospace; */
+  }
 
+  .navbar img {
+    /* max-height: 30px; */
+    vertical-align: middle;
+    height: 4vw;
+  }
+
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+  }
 
 
 .logo {

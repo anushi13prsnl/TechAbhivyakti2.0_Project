@@ -90,18 +90,44 @@
             background-color: rgba(255, 255, 255, 0.2);
             font-weight: bold;
         }
+        .navbar {
+      background-color: #000;
+      padding: 10px 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      color: #9a9999;
+      /* font-family: 'Courier New', Courier, monospace; */
+    }
+
+    .navbar img {
+      /* max-height: 30px; */
+      vertical-align: middle;
+      height: 5vw;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: x-large;
+    }
     </style>
 </head>
 <body>
-    <header class="header" style="height: 30px;">
-        <!-- <h2 class="logo" style="font-size: 56px; color: rgb(252, 249, 252);">HOME</h2> -->
-        <ul class="main-nav">
-            <li><a href="index.html" style="text-decoration: none; color: aliceblue;">HOME</a></li>
-        </ul>
-    </header>
-<div id="stopwatchContainer">
+    <div class="navbar">
+        <div>
+          <img src="Assests/IMG_3511.png" alt="Logo">
+        </div>
+        <div>
+          <a href="index.html" style="margin-right: 30px;">Home</a> 
+          <!-- <a href="eventCountdownfile.html">Create event countdown</a> -->
+        </div>
+      </div>
+<div id="stopwatchContainer" style="padding-bottom: 150px;">
     <h1>Stopwatch</h1>
-    <div id="timeDisplay">00:00:00.000</div>
+    <div id="timeDisplay" >00:00:00.000</div>
     <div id="buttonsContainer">
         <button id="startBtn" onclick="startStopwatch()">Start</button>
         <button id="pauseBtn" style="display: none;" onclick="pauseStopwatch()">Pause</button>
