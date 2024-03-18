@@ -15,6 +15,24 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Additional CSS for responsiveness */
+    /* Adjustments for smaller screens */
+    @media only screen and (max-width: 768px) {
+      /* Example of responsive CSS rules */
+      /* You can add more styles here for responsiveness */
+      .elem {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      #footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -107,8 +125,7 @@
               <h4>SIMPLE <br />TIMER</h4>
               <p>
                 Allows users to input a specific time, counts down from that
-                time to zero, and then displays "Time's up!" once the
-                countdown finishes.
+                time to zero.
               </p>
             </div>
           </div>
@@ -116,23 +133,19 @@
             <div class="overlay">
               <h4>
                 EVENT <br />
-                COUNTDOWN
+                COUNT <br> DOWN
               </h4>
               <p>
-                Enables users to set a future event's details, such as name,
-                date, and time, then counts down to the event's occurrence,
-                displaying the remaining time until the specified event.
+                Enables users to set a future event's details and counts down to the event's occurrence.
               </p>
             </div>
           </div>
           <div class="card" id="card3">
             <div class="overlay">
-              <h4>STOPWATCH</h4>
+              <h4>STOP <br> WATCH</h4>
               <p>
                 This stopwatch with lap feature allows users to start, pause,
-                and reset the timer, while also recording multiple lap times
-                during its operation, providing a comprehensive tool.
-              </p>
+                and reset the timer, while also recording multiple lap times.
             </div>
           </div>
         </div>
