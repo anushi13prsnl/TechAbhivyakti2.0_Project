@@ -549,3 +549,23 @@ video {
   line-height: 20px;
   margin-bottom: 8px;
 }
+
+/* Sign Out Btn */
+#signoutbtn{
+  height: 50px;
+  position: absolute;
+  top: 32%;
+  left: 90%;
+  padding: 0 15px;
+  font-size: 17px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  color: #fff; 
+  background: #009579;
+  cursor: pointer;
+  transition: 0.4s;
+}
+#signoutbtn:hover{
+  background: #006653;
+}
